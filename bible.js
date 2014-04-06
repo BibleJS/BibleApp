@@ -25,7 +25,7 @@ var Bible = require ("bible.js")
 
 // show version
 if (argv.v || argv.version) {
-    return console.log(require ("./package").version);
+    return console.log("Bible.js v" + require ("./package").version);
 }
 
 // show help
