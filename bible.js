@@ -23,15 +23,17 @@ var Bible = require ("bible.js")
   , reference = argv.reference || argv.ref
   ;
 
+// show version
 if (argv.v || argv.version) {
     return console.log(require ("./package").version);
 }
 
+// show help
 if (argv.help || !language || !reference) {
     return console.log(Yargs.help());
 }
 
-
+// output
 console.log("You are reading " + reference);
 console.log("----------------");
 
