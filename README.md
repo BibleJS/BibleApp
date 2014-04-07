@@ -40,6 +40,10 @@ Psalms 1:6 | Certainly the Lord guards the way of the godly, but the way of the 
 ----------------
 ```
 
-## License
+## Changelog
 
+### `v0.1.0`
+ - First stable release
+
+## License
 See LICENSE file.
