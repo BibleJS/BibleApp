@@ -1,6 +1,6 @@
 {
   "name": "bible",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NPM application for reading Holy Bible verses",
   "main": "bible.js",
   "dependencies": {
