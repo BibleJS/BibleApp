@@ -10,6 +10,7 @@ const HELP =
 "\n  --v, --version          print the version" +
 "\n  --lang, --language      set the Bible language" +
 "\n  --ref, --reference      the verse references that you want to read" +
+"\n  --onlyVerses            prevent showing additional output" +
 "\n  --help                  print this output" +
 "\n" +
 "\nDocumentation can be found at https://github.com/BibleJS/BibleApp";
@@ -34,8 +35,10 @@ if (argv.help || !language || !reference) {
 }
 
 // output
-console.log("You are reading " + reference);
-console.log("----------------");
+if (!argv.onlyVerses) {
+    console.log("You are reading " + reference);
+    console.log("----------------");
+}
 
 // get the verses
 (new Bible({language: language})).get(reference, function (err, verses) {
@@ -53,8 +56,17 @@ console.log("----------------");
 
     // output each verse
     for (var i in verses) {
-        var cVerse = verses[i];
-        console.log(cVerse.bookname + " " + cVerse.chapter + ":" + cVerse.verse + " | " + cVerse.text);
+
+        // get the current verse and its reference
+        var cVerse = verses[i]
+          , cVerseRef = cVerse.bookname + " " + cVerse.chapter + ":" + cVerse.verse + " | "
+          ;
+
+        console.log((!argv.onlyVerses ? cVerseRef : "") + cVerse.text);
     }
-    console.log("----------------");
+
+    // output
+    if (!argv.onlyVerses) {
+        console.log("----------------");
+    }
 });
