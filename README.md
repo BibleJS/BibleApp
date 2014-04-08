@@ -42,6 +42,9 @@ Psalms 1:6 | Certainly the Lord guards the way of the godly, but the way of the 
 
 ## Changelog
 
+### `v0.1.2`
+ - Upgrade to `bible.js@0.1.6`
+
 ### `v0.1.1`
  - Added `--onlyVerses` option.
  - Upgrade to `bible.js@0.1.5`
