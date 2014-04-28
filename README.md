@@ -12,6 +12,7 @@ $ npm install bible -g
 
 ```sh
 $ bible --help
+bible --help
 usage: bible [options]
 
 Read the Holy Bible using a NPM application.
@@ -20,6 +21,9 @@ options:
   --v, --version          print the version
   --lang, --language      set the Bible language
   --ref, --reference      the verse references that you want to read
+  --onlyVerses            prevent showing additional output
+  --s, --search           get the verses that match to the string or regular expression provided
+  --rc, --resultColor     set the result color when searching something
   --help                  print this output
 
 Documentation can be found at https://github.com/BibleJS/BibleApp
@@ -43,7 +47,7 @@ Psalms 1:6 | Certainly the Lord guards the way of the godly, but the way of the 
 ## Changelog
 
 ### `v0.1.3`
- - Added search feature upgrading the `bible.js` module to `v0.1.6`
+ - Added search feature upgrading the `bible.js` module to `v0.1.6`. It supports only Romanian language.
  - Set the default searched result color using `--rc` or `--resultColor`
  - Added `couleurs` as dependency
 
