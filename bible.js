@@ -12,18 +12,32 @@ const HELP =
 "\n  --ref, --reference      the verse references that you want to read" +
 "\n  --onlyVerses            prevent showing additional output" +
 "\n  --s, --search           get the verses that match to the string or regular expression provided" +
+"\n  --rc, --resultColor     set the result color when searching something" +
 "\n  --help                  print this output" +
 "\n" +
 "\nDocumentation can be found at https://github.com/BibleJS/BibleApp";
 
 // dependencies
 var Bible = require ("bible.js")
+  , Couleurs = require ("couleurs")
   , Yargs = require('yargs').usage(HELP)
   , argv = Yargs.argv
   , language = argv.lang || argv.language
   , reference = argv.reference || argv.ref
   , search = argv.s || argv.search
+  , searchResultColor = (argv.rc || argv.resultColor || "255, 0, 0").split(",")
   ;
+
+
+// parse result color
+for (var i = 0; i < 3; ++i) {
+
+    if (!searchResultColor[i]) {
+        return console.log ("Invalid result color. Please provide a string in this format: 'r, g, b'. Example: --resultColor '255, 0, 0'");
+    }
+
+    searchResultColor[i] = parseInt(searchResultColor[i])
+}
 
 // show version
 if (argv.v || argv.version) {
@@ -73,6 +87,13 @@ function printOutput (err, verses) {
         var cVerse = verses[i]
           , cVerseRef = cVerse.bookname + " " + cVerse.chapter + ":" + cVerse.verse + " | "
           ;
+
+        if (search) {
+            cVerse.text = cVerse.text.replace (
+                new RegExp (search, "g")
+              , search.rgb(searchResultColor)
+            );
+        }
 
         console.log((!argv.onlyVerses ? cVerseRef : "") + cVerse.text);
     }
