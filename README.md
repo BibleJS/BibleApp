@@ -42,6 +42,11 @@ Psalms 1:6 | Certainly the Lord guards the way of the godly, but the way of the 
 
 ## Changelog
 
+### `v0.1.3`
+ - Added search feature upgrading the `bible.js` module to `v0.1.6`
+ - Set the default searched result color using `--rc` or `--resultColor`
+ - Added `couleurs` as dependency
+
 ### `v0.1.2`
  - Upgrade to `bible.js@0.1.6`
 
