@@ -46,7 +46,7 @@ Psalms 1:6 | Certainly the Lord guards the way of the godly, but the way of the 
 
 ## Asciicast
 
-> ![](http://i.imgur.com/61ybfmg.png)
+> [![](http://i.imgur.com/61ybfmg.png)](https://asciinema.org/a/9151)
 
 ## Changelog
 
