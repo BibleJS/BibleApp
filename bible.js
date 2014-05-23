@@ -17,7 +17,7 @@ const HELP =
 "\n" +
 "\nDocumentation can be found at https://github.com/BibleJS/BibleApp";
 
-// dependencies
+// Dependencies
 var Bible = require ("bible.js")
   , Couleurs = require ("couleurs")
   , Yargs = require('yargs').usage(HELP)
@@ -29,7 +29,7 @@ var Bible = require ("bible.js")
   ;
 
 
-// parse result color
+// Parse result color
 for (var i = 0; i < 3; ++i) {
 
     if (!searchResultColor[i]) {
@@ -39,17 +39,17 @@ for (var i = 0; i < 3; ++i) {
     searchResultColor[i] = parseInt(searchResultColor[i])
 }
 
-// show version
+// Show version
 if (argv.v || argv.version) {
     return console.log("Bible.js v" + require ("./package").version);
 }
 
-// show help
+// Show help
 if (argv.help || !language || (!reference && !search)) {
     return console.log(Yargs.help());
 }
 
-// output
+// Output
 if (!argv.onlyVerses) {
     if (reference) {
         console.log("You are reading " + reference);
@@ -63,24 +63,28 @@ if (!argv.onlyVerses) {
 }
 
 /**
- *  This function is called when the response from the
- *  search or get request comes
+ * printOutput
+ * This function is called when the response from the
+ * search or get request comes
  *
+ * @param {Error} err An error that ocured while fetching the verses.
+ * @param {Array} verses The verses array that was returned by bible.js module.
+ * @return {undefined} Returns undefined
  */
 function printOutput (err, verses) {
 
-    // handle error
+    // Handle error
     if (err) {
         console.log("Error: ", err);
         return;
     }
 
-    // no verses
+    // No verses
     if (!verses || !verses.length) {
         console.log("Verses not found");
     }
 
-    // output each verse
+    // Output each verse
     for (var i in verses) {
 
         // get the current verse and its reference
@@ -98,18 +102,18 @@ function printOutput (err, verses) {
         console.log((!argv.onlyVerses ? cVerseRef : "") + cVerse.text);
     }
 
-    // output
+    // Output
     if (!argv.onlyVerses) {
         console.log("----------------");
     }
 }
 
 if (reference) {
-    // get the verses
+    // Get the verses
     (new Bible({language: language})).get(reference, printOutput);
 }
 
 if (search) {
-    // search verses
+    // Search verses
     (new Bible({language: language})).search(search, printOutput);
 }
