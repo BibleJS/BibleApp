@@ -108,12 +108,12 @@ function printOutput (err, verses) {
     }
 }
 
+// Get the verses
 if (reference) {
-    // Get the verses
     (new Bible({language: language})).get(reference, printOutput);
 }
 
+// Search verses
 if (search) {
-    // Search verses
     (new Bible({language: language})).search(search, printOutput);
 }
