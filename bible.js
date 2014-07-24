@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+// Help output
 const HELP =
 "bible --help" +
 "\nusage: bible [options]" +
@@ -17,6 +18,10 @@ const HELP =
 "\n" +
 "\nDocumentation can be found at https://github.com/BibleJS/BibleApp";
 
+function getUserHome() {
+    return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+}
+
 // Dependencies
 var Bible = require ("bible.js")
   , Couleurs = require ("couleurs")
@@ -26,8 +31,8 @@ var Bible = require ("bible.js")
   , reference = argv.reference || argv.ref
   , search = argv.s || argv.search
   , searchResultColor = (argv.rc || argv.resultColor || "255, 0, 0").split(",")
+  , config = require(getUserHome() + "/.bible-config");
   ;
-
 
 // Parse result color
 for (var i = 0; i < 3; ++i) {
@@ -108,12 +113,18 @@ function printOutput (err, verses) {
     }
 }
 
-// Get the verses
-if (reference) {
-    (new Bible({language: language})).get(reference, printOutput);
-}
+var bibleIns = new Bible({language: language});
+bibleIns.init(config, function (err) {
 
-// Search verses
-if (search) {
-    (new Bible({language: language})).search(search, printOutput);
-}
+    if (err) { throw err; }
+
+    // Get the verses
+    if (reference) {
+        bibleIns.get(reference, printOutput);
+    }
+
+    // Search verses
+    if (search) {
+        bibleIns.search(search, printOutput);
+    }
+});
