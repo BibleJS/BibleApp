@@ -6,14 +6,15 @@
   "dependencies": {
     "bible.js": "1.0.0",
     "couleurs": "~0.1.2",
-    "yargs": "~1.2.1"
+    "yargs": "~1.2.1",
+    "rimraf": "2.2.8"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "./installation/preinstall.sh"
-    "postinstall": "./installation/postinstall.sh"
-    "preuninstall": "./installation/preuninstall.sh"
+    "preinstall": "./installation/preinstall.js",
+    "postinstall": "./installation/postinstall.js",
+    "preuninstall": "./installation/preuninstall.js"
   },
   "repository": {
     "type": "git",
