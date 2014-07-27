@@ -2,30 +2,27 @@
 
 // Help output
 const HELP =
-"bible --help" +
-"\nusage: bible [options]" +
-"\n" +
-"\nRead the Holy Bible using a NPM application." +
-"\n" +
-"\noptions:" +
-"\n  --v, --version          print the version" +
-"\n  --lang, --language      set the Bible language" +
-"\n  --ref, --reference      the verse references that you want to read" +
-"\n  --onlyVerses            prevent showing additional output" +
-"\n  --s, --search           get the verses that match to the string or regular expression provided" +
-"\n  --rc, --resultColor     set the result color when searching something" +
-"\n  --help                  print this output" +
-"\n" +
-"\nDocumentation can be found at https://github.com/BibleJS/BibleApp";
-
-function getUserHome() {
-    return process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
-}
+"bible --help"
++ "\nusage: bible [options]"
++ "\n"
++ "\nRead the Holy Bible using a NPM application."
++ "\n"
++ "\noptions:"
++ "\n  --v, --version          print the version"
++ "\n  --lang, --language      set the Bible language"
++ "\n  --ref, --reference      the verse references that you want to read"
++ "\n  --onlyVerses            prevent showing additional output"
++ "\n  --s, --search           get the verses that match to the string or"
++ "\n                          regular expression provided"
++ "\n  --rc, --resultColor     set the result color when searching something"
++ "\n  --help                  print this output"
++ "\n"
++ "\nDocumentation can be found at https://github.com/BibleJS/BibleApp";
 
 // Dependencies
-var Bible = require ("bible.js")
-  , Couleurs = require ("couleurs")
-  , Yargs = require('yargs').usage(HELP)
+var Bible = require("bible.js")
+  , Couleurs = require("couleurs")
+  , Yargs = require("yargs").usage(HELP)
   , argv = Yargs.argv
   , language = argv.lang || argv.language
   , reference = argv.reference || argv.ref
@@ -34,11 +31,19 @@ var Bible = require ("bible.js")
   , config = require(getUserHome() + "/.bible-config");
   ;
 
+// Constants
+const HOME_DIRECTORY = process.env[
+    process.platform == "win32" ? "USERPROFILE" : "HOME"
+];
+
 // Parse result color
 for (var i = 0; i < 3; ++i) {
 
     if (!searchResultColor[i]) {
-        return console.log ("Invalid result color. Please provide a string in this format: 'r, g, b'. Example: --resultColor '255, 0, 0'");
+        return console.log(
+            "Invalid result color. Please provide a string in this format:"
+          + "'r, g, b'. Example: --resultColor '255, 0, 0'"
+        );
     }
 
     searchResultColor[i] = parseInt(searchResultColor[i])
@@ -46,7 +51,7 @@ for (var i = 0; i < 3; ++i) {
 
 // Show version
 if (argv.v || argv.version) {
-    return console.log("Bible.js v" + require ("./package").version);
+    return console.log("Bible.js v" + require("./package").version);
 }
 
 // Show help
