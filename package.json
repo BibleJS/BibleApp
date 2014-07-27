@@ -4,7 +4,7 @@
   "description": "NPM application for reading Holy Bible verses",
   "main": "bible.js",
   "dependencies": {
-    "bible.js": "1.0.0",
+    "bible.js": "1.0.1",
     "couleurs": "~0.1.2",
     "yargs": "~1.2.1",
     "rimraf": "2.2.8",
