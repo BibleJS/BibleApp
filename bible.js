@@ -113,10 +113,13 @@ function printOutput (err, verses) {
     }
 }
 
-var bibleIns = new Bible({language: language});
-bibleIns.init(config, function (err) {
+// Init submodules
+Bible.init(config, function (err) {
 
     if (err) { throw err; }
+
+    // Create Bible instance
+    var bibleIns = new Bible({language: language});
 
     // Get the verses
     if (reference) {
