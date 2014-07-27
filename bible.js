@@ -19,6 +19,11 @@ const HELP =
 + "\n"
 + "\nDocumentation can be found at https://github.com/BibleJS/BibleApp";
 
+// Constants
+const HOME_DIRECTORY = process.env[
+    process.platform == "win32" ? "USERPROFILE" : "HOME"
+];
+
 // Dependencies
 var Bible = require("bible.js")
   , Couleurs = require("couleurs")
@@ -28,13 +33,23 @@ var Bible = require("bible.js")
   , reference = argv.reference || argv.ref
   , search = argv.s || argv.search
   , searchResultColor = (argv.rc || argv.resultColor || "255, 0, 0").split(",")
-  , config = require(getUserHome() + "/.bible-config");
+  , config = require(HOME_DIRECTORY + "/.bible-config")
+  , Box = require("cli-box")
+  , OS = require("os")
   ;
 
-// Constants
-const HOME_DIRECTORY = process.env[
-    process.platform == "win32" ? "USERPROFILE" : "HOME"
-];
+// Set cli-box defaults
+Box.defaults.marks = {
+    nw: "╔"
+  , n:  "══"
+  , ne: "╗"
+  , e:  "║"
+  , se: "╝"
+  , s:  "══"
+  , sw: "╚"
+  , w:  "║"
+  , b: "░░"
+};
 
 // Parse result color
 for (var i = 0; i < 3; ++i) {
@@ -94,12 +109,14 @@ function printOutput (err, verses) {
         console.log("Verses not found");
     }
 
+    var output = "";
     // Output each verse
     for (var i in verses) {
 
         // get the current verse and its reference
         var cVerse = verses[i]
-          , cVerseRef = cVerse.bookname + " " + cVerse.chapter + ":" + cVerse.verse + " | "
+          , cVerseRef = cVerse.bookname + " " + cVerse.chapter + ":" + cVerse.verse
+          , referenceBox = new Box("20x10", cVerseRef);
           ;
 
         if (search) {
@@ -109,7 +126,12 @@ function printOutput (err, verses) {
             );
         }
 
-        console.log((!argv.onlyVerses ? cVerseRef : "") + cVerse.text);
+        debugger;
+        if (argv.onlyVerses) {
+            output += cVerse.text + OS.EOL;
+        } else {
+            output += referenceBox.toString()
+        }
     }
 
     // Output
