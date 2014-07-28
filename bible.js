@@ -34,21 +34,26 @@ var Bible = require("bible.js")
   , search = argv.s || argv.search
   , searchResultColor = (argv.rc || argv.resultColor || "255, 0, 0").split(",")
   , config = require(HOME_DIRECTORY + "/.bible-config")
-  , Box = require("cli-box")
   , OS = require("os")
+  , LeTable = require("le-table")
   ;
 
-// Set cli-box defaults
-Box.defaults.marks = {
-    nw: "╔"
-  , n:  "══"
-  , ne: "╗"
-  , e:  "║"
-  , se: "╝"
-  , s:  "══"
-  , sw: "╚"
-  , w:  "║"
-  , b: "░░"
+// Table defaults
+LeTable.defaults.marks = {
+    nw: "┌"
+  , n:  "─"
+  , ne: "┐"
+  , e:  "│"
+  , se: "┘"
+  , s:  "─"
+  , sw: "└"
+  , w:  "│"
+  , b: " "
+  , mt: "┬"
+  , ml: "├"
+  , mr: "┤"
+  , mb: "┴"
+  , mm: "┼"
 };
 
 // Parse result color
@@ -109,14 +114,14 @@ function printOutput (err, verses) {
         console.log("Verses not found");
     }
 
-    var output = "";
+    var tbl = new LeTable();
+
     // Output each verse
     for (var i in verses) {
 
         // get the current verse and its reference
         var cVerse = verses[i]
           , cVerseRef = cVerse.bookname + " " + cVerse.chapter + ":" + cVerse.verse
-          , referenceBox = new Box("20x10", cVerseRef);
           ;
 
         if (search) {
@@ -126,17 +131,19 @@ function printOutput (err, verses) {
             );
         }
 
-        debugger;
         if (argv.onlyVerses) {
-            output += cVerse.text + OS.EOL;
+            console.log(cVerse.text);
         } else {
-            output += referenceBox.toString()
+            tbl.addRow([
+                {text: cVerseRef, data: {hAlign: "right"}}
+              , {text: cVerse.text, data: {hAlign: "left"}}
+            ]);
         }
     }
 
     // Output
     if (!argv.onlyVerses) {
-        console.log("----------------");
+        console.log(tbl.toString());
     }
 }
 
