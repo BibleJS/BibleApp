@@ -9,14 +9,11 @@
     "yargs": "~1.2.1",
     "rimraf": "2.2.8",
     "le-table": "~1.0.1",
-    "rimraf": "2.2.8"
+    "bible-sample-config": "1.0.0-alpha"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "./installation/preinstall.js",
-    "postinstall": "./installation/postinstall.js",
-    "preuninstall": "./installation/preuninstall.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
