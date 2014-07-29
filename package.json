@@ -8,7 +8,8 @@
     "couleurs": "~0.1.2",
     "yargs": "~1.2.1",
     "rimraf": "2.2.8",
-    "le-table": "~1.0.1"
+    "le-table": "~1.0.1",
+    "rimraf": "2.2.8"
   },
   "devDependencies": {},
   "scripts": {
