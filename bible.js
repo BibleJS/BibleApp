@@ -136,7 +136,10 @@ function printOutput (err, verses) {
         } else {
             tbl.addRow([
                 {text: cVerseRef, data: {hAlign: "right"}}
-              , {text: cVerse.text, data: {hAlign: "left"}}
+              , {
+                    text: cVerse.text.match(/.{1,80}(\s|$)|\S+?(\s|$)/g).join("\n")
+                  , data: {hAlign: "left"}
+                }
             ]);
         }
     }
