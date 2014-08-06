@@ -23,6 +23,21 @@ const HELP =
 const HOME_DIRECTORY = process.env[
     process.platform == "win32" ? "USERPROFILE" : "HOME"
 ];
+const SAMPLE_CONFIGURATION = {
+    versions: {
+        en: {
+            source: "https://github.com/BibleJS/bible-english"
+          , version: "master"
+          , language: "en"
+        },
+        ro: {
+            source: "https://github.com/BibleJS/bible-romanian"
+          , version: "master"
+          , language: "ro"
+        }
+    }
+};
+const CONFIG_FILE_PATH = HOME_DIRECTORY + "/.bible-config";
 
 // Dependencies
 var Bible = require("bible.js")
@@ -32,19 +47,44 @@ var Bible = require("bible.js")
   , language = argv.lang || argv.language
   , reference = argv.reference || argv.ref
   , search = argv.s || argv.search
-  , searchResultColor = (argv.rc || argv.resultColor || "255, 0, 0").split(",")
+  , searchResultColor = null
   , OS = require("os")
   , LeTable = require("le-table")
+  , Fs = require("fs")
   , config = null
   ;
 
-
-
+// Read configuration file
 try {
-    config = require(HOME_DIRECTORY + "/.bible-config")
+    config = require(CONFIG_FILE_PATH);
 } catch (e) {
-    debugger;
+    if (e.code === "MODULE_NOT_FOUND") {
+        Debug.log(
+            "No configuration file was found. Initing configuration file."
+          , "warn"
+        );
+        Fs.writeFileSync(CONFIG_FILE_PATH, JSON.stringify(
+            SAMPLE_CONFIGURATION, null, 4
+        ));
+        Debug.log(
+            "Configuration file created successfully at the following location: "
+          + CONFIG_FILE_PATH
+          , "warn"
+        );
+        config = require(CONFIG_FILE_PATH);
+    } else {
+        Debug.log(
+            "Cannot read configuration file. Reason: " + e.code
+          , "warn"
+        );
+    }
 }
+
+// Try to get options from config as well
+language = language || config.language;
+searchResultColor = (
+    argv.rc || argv.resultColor || config.resultColor || "255, 0, 0"
+).split(",")
 
 // Table defaults
 LeTable.defaults.marks = {
