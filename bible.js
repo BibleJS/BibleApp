@@ -233,7 +233,9 @@ Bible.init(config, function (err) {
 
     // Search verses
     if (search) {
-        console.log("Results for search: " + search);
+        if (!argv.onlyVerses) {
+            console.log("Results for search: " + search);
+        }
         bibleIns.search(search, printOutput);
     }
 });
