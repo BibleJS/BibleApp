@@ -1,6 +1,6 @@
 {
   "name": "bible",
-  "version": "1.0.0-alpha4",
+  "version": "1.0.0-alpha5",
   "description": "NPM application for reading Holy Bible verses",
   "main": "bible.js",
   "dependencies": {
@@ -8,8 +8,7 @@
     "couleurs": "~0.1.2",
     "yargs": "~1.2.1",
     "rimraf": "2.2.8",
-    "le-table": "~1.0.1",
-    "bible-sample-config": "1.0.0-alpha2"
+    "le-table": "~1.0.1"
   },
   "devDependencies": {},
   "scripts": {
