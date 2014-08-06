@@ -149,7 +149,7 @@ if (argv.v || argv.version) {
 }
 
 // Show help
-if (argv.help || !language || (!reference && !search)) {
+if (argv.help ||  (!language && !reference && !search)) {
     return console.log(Yargs.help());
 }
 
