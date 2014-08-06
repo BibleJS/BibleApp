@@ -37,11 +37,12 @@ const SAMPLE_CONFIGURATION = {
         }
     }
 };
-const CONFIG_FILE_PATH = HOME_DIRECTORY + "/.bible-config";
+const CONFIG_FILE_PATH = HOME_DIRECTORY + "/.bible-config.json";
 
 // Dependencies
 var Bible = require("bible.js")
   , Couleurs = require("couleurs")
+  , Debug = require("bug-killer")
   , Yargs = require("yargs").usage(HELP)
   , argv = Yargs.argv
   , language = argv.lang || argv.language
