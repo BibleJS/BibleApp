@@ -71,7 +71,6 @@ var Bible = require("bible.js")
   , Yargs = require("yargs").usage(HELP)
   , argv = Yargs.argv
   , language = argv.lang || argv.language
-  , reference = argv.reference || argv.ref
   , search = argv.s || argv.search
   , searchResultColor = null
   , OS = require("os")
@@ -148,22 +147,10 @@ if (argv.v || argv.version) {
     return console.log("Bible.js v" + require("./package").version);
 }
 
+var references = argv._;
 // Show help
-if (argv.help || !language || (!reference && !search)) {
+if (argv.help || !language || (!references.length && !search)) {
     return console.log(Yargs.help());
-}
-
-// Output
-if (!argv.onlyVerses) {
-    if (reference) {
-        console.log("You are reading " + reference);
-    }
-
-    if (search) {
-        console.log("You are searching " + search);
-    }
-
-    console.log("----------------");
 }
 
 /**
@@ -233,12 +220,20 @@ Bible.init(config, function (err) {
     var bibleIns = new Bible({language: language});
 
     // Get the verses
-    if (reference) {
-        bibleIns.get(reference, printOutput);
+    if (references.length) {
+        for (var i = 0; i < references.length; ++i) {
+            (function (cR) {
+                if (!argv.onlyVerses) {
+                    console.log("Reference: " + cR);
+                }
+                bibleIns.get(cR, printOutput);
+            })(references[i]);
+        }
     }
 
     // Search verses
     if (search) {
+        console.log("Results for search: " + search);
         bibleIns.search(search, printOutput);
     }
 });
