@@ -3,19 +3,43 @@
 // Help output
 const HELP =
 "bible --help"
-+ "\nusage: bible [options]"
++ "\nusage: bible [options] [reference1, reference2, ...]"
 + "\n"
 + "\nRead the Holy Bible using a NPM application."
 + "\n"
 + "\noptions:"
 + "\n  --v, --version          print the version"
 + "\n  --lang, --language      set the Bible language"
-+ "\n  --ref, --reference      the verse references that you want to read"
-+ "\n  --onlyVerses            prevent showing additional output"
++ "\n  --onlyVerses            prevent showing additional outpt"
 + "\n  --s, --search           get the verses that match to the string or"
 + "\n                          regular expression provided"
 + "\n  --rc, --resultColor     set the result color when searching something"
 + "\n  --help                  print this output"
++ "\n"
++ "\nreferences:"
++ "\n - References separated by spaces (see example):"
++ "\n"
++ "\nexample:"
++ "\n   bible --lang en 'John 1:1-10' 'Genesis 2:3-7'"
++ "\n"
++ "\nWhen the module is initialized, the packages from configuration file are"
++ "\ndownloaded and used. The configuration is stored in a  JSON file, in the"
++ "\nhome directory: ~/.bible-config.json"
++ "\n"
++ "\nIf this doesn't exist, it's created at the first `bible` call."
++ "\n"
++ "\nYou can create custom packages, including them there (in  the `versions`"
++ "\nfield). The additional fields are listed below:"
++ "\n"
++ "\n - `language`: a string representing the default language (if this is set,"
++ "\n               `--lang`  is not need anymore  unless you  want to override"
++ "\n               the language value)"
++ "\n"
++ "\n - `resultColor`: a string  representing  the  default  result color  when"
++ "\n                  searching    something   (if  this  is  set,  `--rc`  or"
++ "\n                  `--resultColor`  options are not needed anymore unless"
++ "\n                  you want to override the `resultColor` value)"
++ "\n"
 + "\n"
 + "\nDocumentation can be found at https://github.com/BibleJS/BibleApp";
 
@@ -36,6 +60,7 @@ const SAMPLE_CONFIGURATION = {
           , language: "ro"
         }
     }
+  , resultColor: "255, 0, 0"
 };
 const CONFIG_FILE_PATH = HOME_DIRECTORY + "/.bible-config.json";
 
@@ -84,7 +109,7 @@ try {
 // Try to get options from config as well
 language = language || config.language;
 searchResultColor = (
-    argv.rc || argv.resultColor || config.resultColor || "255, 0, 0"
+    argv.rc || argv.resultColor || config.resultColor
 ).split(",")
 
 // Table defaults
