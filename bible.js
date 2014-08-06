@@ -151,7 +151,7 @@ if (argv.v || argv.version) {
 
 var references = argv._;
 // Show help
-if (argv.help || !language || (!references.length && !search)) {
+if (argv.help ||  (!language && !references.length && !search)) {
     return console.log(Yargs.help());
 }
 
