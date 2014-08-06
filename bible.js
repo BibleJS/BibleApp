@@ -40,6 +40,9 @@ const HELP =
 + "\n                  `--resultColor`  options are not needed anymore unless"
 + "\n                  you want to override the `resultColor` value)"
 + "\n"
++ "\n - `searchLimit`: an integer representing max number of verses that will be"
++ "\n                  output when searching something"
++ "\n"
 + "\n"
 + "\nDocumentation can be found at https://github.com/BibleJS/BibleApp";
 
@@ -61,6 +64,7 @@ const SAMPLE_CONFIGURATION = {
         }
     }
   , resultColor: "255, 0, 0"
+  , searchLimit: 10
 };
 const CONFIG_FILE_PATH = HOME_DIRECTORY + "/.bible-config.json";
 
@@ -68,6 +72,7 @@ const CONFIG_FILE_PATH = HOME_DIRECTORY + "/.bible-config.json";
 var Bible = require("bible.js")
   , Couleurs = require("couleurs")
   , Debug = require("bug-killer")
+  , RegexParser = require("regex-parser").parse
   , Yargs = require("yargs").usage(HELP)
   , argv = Yargs.argv
   , language = argv.lang || argv.language
@@ -110,6 +115,7 @@ language = language || config.language;
 searchResultColor = (
     argv.rc || argv.resultColor || config.resultColor
 ).split(",")
+config.searchLimit = config.searchLimit || 10;
 
 // Table defaults
 LeTable.defaults.marks = {
@@ -186,10 +192,18 @@ function printOutput (err, verses) {
           ;
 
         if (search) {
-            cVerse.text = cVerse.text.replace (
-                new RegExp (search, "g")
-              , search.rgb(searchResultColor)
-            );
+
+            // Highlight search results
+            var re = typeof search === "string" ? RegexParser(search) : search
+              , match = cVerse.text.match(re) || []
+              ;
+
+            for (var ii = 0; ii < match.length; ++ii) {
+                cVerse.text = cVerse.text.replace (
+                    new RegExp(match[ii])
+                  , match[ii].rgb(searchResultColor)
+                );
+            }
         }
 
         if (argv.onlyVerses) {
@@ -202,6 +216,11 @@ function printOutput (err, verses) {
                   , data: {hAlign: "left"}
                 }
             ]);
+        }
+
+        // Search limit
+        if (search && --config.searchLimit <= 0) {
+            break;
         }
     }
 
@@ -233,7 +252,9 @@ Bible.init(config, function (err) {
 
     // Search verses
     if (search) {
-        console.log("Results for search: " + search);
+        if (!argv.onlyVerses) {
+            console.log("Results for search: " + search);
+        }
         bibleIns.search(search, printOutput);
     }
 });
