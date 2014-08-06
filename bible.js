@@ -33,10 +33,18 @@ var Bible = require("bible.js")
   , reference = argv.reference || argv.ref
   , search = argv.s || argv.search
   , searchResultColor = (argv.rc || argv.resultColor || "255, 0, 0").split(",")
-  , config = require(HOME_DIRECTORY + "/.bible-config")
   , OS = require("os")
   , LeTable = require("le-table")
+  , config = null
   ;
+
+
+
+try {
+    config = require(HOME_DIRECTORY + "/.bible-config")
+} catch (e) {
+    debugger;
+}
 
 // Table defaults
 LeTable.defaults.marks = {
