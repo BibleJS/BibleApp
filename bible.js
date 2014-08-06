@@ -5,7 +5,7 @@ const HELP =
 "bible --help"
 + "\nusage: bible [options] [reference1, reference2, ...]"
 + "\n"
-+ "\nRead the Holy Bible using a NPM application."
++ "\nCLI client for bible.js NPM module. Read the Holy Bible via command line"
 + "\n"
 + "\noptions:"
 + "\n  --v, --version          print the version"
@@ -21,18 +21,20 @@ const HELP =
 + "\n"
 + "\nexample:"
 + "\n   bible --lang en 'John 1:1-10' 'Genesis 2:3-7'"
++ "\n   bible --lang ro --search 'Meroza'"
++ "\n   bible --lang ro --search '/Meroza/gi'"
 + "\n"
-+ "\nWhen the module is initialized, the packages from configuration file are"
-+ "\ndownloaded and used. The configuration is stored in a  JSON file, in the"
-+ "\nhome directory: ~/.bible-config.json"
++ "\nWhen the module is initialized, the packages listed in configuration file,"
++ "\nare downloaded and used (~/.bible directory).  The configuration is stored"
++ "\nin a JSON file, in the home directory: ~/.bible-config.json"
 + "\n"
 + "\nIf this doesn't exist, it's created at the first `bible` call."
 + "\n"
 + "\nYou can create custom packages, including them there (in  the `versions`"
-+ "\nfield). The additional fields are listed below:"
++ "\nfield). The additional configuration fields are listed below:"
 + "\n"
 + "\n - `language`: a string representing the default language (if this is set,"
-+ "\n               `--lang`  is not need anymore  unless you  want to override"
++ "\n               `--lang`  is not needed anymore unless you want to override"
 + "\n               the language value)"
 + "\n"
 + "\n - `resultColor`: a string  representing  the  default  result color  when"
@@ -84,6 +86,7 @@ var Bible = require("bible.js")
   , config = null
   ;
 
+  debugger;
 // Read configuration file
 try {
     config = require(CONFIG_FILE_PATH);
