@@ -238,7 +238,6 @@ function printOutput (err, verses) {
     }
 }
 
-debugger;
 var bibleDirectory = HOME_DIRECTORY + "/.bible";
 if (!Fs.existsSync(bibleDirectory)) {
     Debug.log("~/.bible directory was not found. Downloading packages. This may take a while.", "info");
