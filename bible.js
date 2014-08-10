@@ -67,7 +67,10 @@ const SAMPLE_CONFIGURATION = {
     }
   , resultColor: "255, 0, 0"
   , searchLimit: 10
+  , language: /^ro_/.test(process.env.LC_NAME) ? "ro" : "en"
+  , searchLimit: 10
 };
+
 const CONFIG_FILE_PATH = HOME_DIRECTORY + "/.bible-config.json";
 
 // Dependencies
