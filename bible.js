@@ -89,7 +89,8 @@ var Bible = require("bible.js")
   , config = null
   ;
 
-  debugger;
+Debug._config.logLevel = 3;
+
 // Read configuration file
 try {
     config = require(CONFIG_FILE_PATH);
@@ -114,6 +115,17 @@ try {
           , "warn"
         );
     }
+}
+
+// Show version
+if (argv.v || argv.version) {
+    return console.log("Bible.js v" + require("./package").version);
+}
+
+// Show help
+var references = argv._;
+if (argv.help ||  (!language && !references.length && !search)) {
+    return console.log(Yargs.help());
 }
 
 // Try to get options from config as well
@@ -154,16 +166,6 @@ for (var i = 0; i < 3; ++i) {
     searchResultColor[i] = parseInt(searchResultColor[i])
 }
 
-// Show version
-if (argv.v || argv.version) {
-    return console.log("Bible.js v" + require("./package").version);
-}
-
-var references = argv._;
-// Show help
-if (argv.help ||  (!language && !references.length && !search)) {
-    return console.log(Yargs.help());
-}
 
 /**
  * printOutput
@@ -234,6 +236,12 @@ function printOutput (err, verses) {
     if (!argv.onlyVerses) {
         console.log(tbl.toString());
     }
+}
+
+debugger;
+var bibleDirectory = HOME_DIRECTORY + "/.bible";
+if (!Fs.existsSync(bibleDirectory)) {
+    Debug.log("~/.bible directory was not found. Downloading packages. This may take a while.", "info");
 }
 
 // Init submodules
