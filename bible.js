@@ -75,7 +75,7 @@ const CONFIG_FILE_PATH = HOME_DIRECTORY + "/.bible-config.json";
 
 // Dependencies
 var Bible = require("bible.js")
-  , Couleurs = require("couleurs")
+  , Couleurs = require("couleurs")()
   , Debug = require("bug-killer")
   , RegexParser = require("regex-parser")
   , Yargs = require("yargs").usage(HELP)
@@ -89,7 +89,7 @@ var Bible = require("bible.js")
   , config = null
   ;
 
-Debug._config.logLevel = 3;
+Debug.config.logLevel = 3;
 
 // Read configuration file
 try {
@@ -209,7 +209,7 @@ function printOutput (err, verses) {
             for (var ii = 0; ii < match.length; ++ii) {
                 cVerse.text = cVerse.text.replace (
                     new RegExp(match[ii])
-                  , match[ii].rgb(searchResultColor)
+                  , Couleurs.fg(match[ii], searchResultColor)
                 );
             }
         }

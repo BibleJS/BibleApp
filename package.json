@@ -5,11 +5,11 @@
   "main": "bible.js",
   "dependencies": {
     "bible.js": "1.0.3",
-    "couleurs": "~1.0.0",
-    "yargs": "~1.3.2",
-    "le-table": "~1.0.2",
-    "regex-parser": "~1.0.0",
-    "bug-killer": "~0.1.1"
+    "couleurs": "2.0.0",
+    "yargs": "1.3.3",
+    "le-table": "2.0.0",
+    "regex-parser": "1.0.0",
+    "bug-killer": "1.0.0"
   },
   "devDependencies": {},
   "scripts": {
