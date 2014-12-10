@@ -132,7 +132,7 @@ if (argv.help ||  (!language && !references.length && !search)) {
 language = language || config.language;
 searchResultColor = (
     argv.rc || argv.resultColor || config.resultColor
-).split(",")
+).split(/[ ,]+/)
 config.searchLimit = config.searchLimit || 10;
 
 // Table defaults
