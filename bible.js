@@ -61,7 +61,7 @@ try {
 if (Argv.v || Argv.version) {
     return console.log(
         "Bible " + require("./package").version
-      + "Bible.JS " + require("./package").dependencies["bible.js"]
+    + "\nBible.JS " + require("./package").dependencies["bible.js"]
     );
 }
 
