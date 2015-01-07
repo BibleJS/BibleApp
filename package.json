@@ -9,7 +9,8 @@
     "yargs": "1.3.3",
     "le-table": "2.0.0",
     "regex-parser": "1.0.0",
-    "bug-killer": "1.0.0"
+    "bug-killer": "1.0.0",
+    "ul": "*"
   },
   "devDependencies": {},
   "scripts": {
