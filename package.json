@@ -1,6 +1,6 @@
 {
   "name": "bible",
-  "version": "1.0.0-beta3",
+  "version": "1.0.0-beta4",
   "description": "NPM application for reading Holy Bible verses",
   "main": "bible.js",
   "dependencies": {
@@ -34,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/BibleJS/BibleApp/issues"
   },
-  "homepage": "https://github.com/BibleJS/BibleApp"
+  "homepage": "https://github.com/BibleJS/BibleApp",
+  "directories": {
+    "doc": "docs"
+  }
 }
