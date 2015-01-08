@@ -1,7 +1,7 @@
 {
   "name": "bible",
-  "version": "1.0.0-beta4",
-  "description": "NPM application for reading Holy Bible verses",
+  "version": "1.0.0",
+  "description": "Bible.JS CLI client. Read the Holy Bible via the command line.",
   "main": "bible.js",
   "dependencies": {
     "bible.js": "2.0.0",
