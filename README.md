@@ -184,11 +184,18 @@ Results for search: /meroza/i
 ```
 
 ## Changelog
-### `v1.0.0`
- - Changed the CLI options.
+### `1.0.0`
  - Upgraded to bible.js@2.0.0
- - Allow BibleJS submodules.
- - Improved output.
+ - Submodule support (which was introduced in [`bible.js@1.0.0`](https://github.com/BibleJS/bible.js)
+ - Fixed ASCII table rendering.
+ - New syntax for getting verses:
+
+   ```sh
+   $ bible --lang en 'Genesis 1:1'
+   $ bible 'Geneza 1:1' # supposing "ro" language is set in ~/.bible-config.json file
+   $ bible -s '/meroza/i' # you can pass regular expressions there
+   ```
+
 
 ### `v0.1.3`
  - Added search feature upgrading the `bible.js` module to `v0.1.6`. It supports only Romanian language.
