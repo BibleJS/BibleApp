@@ -20,18 +20,18 @@ usage: bible [options] [reference1, reference2, ...]
 Bible.JS CLI client. Read the Holy Bible via the command line.
 
 options:
-  --v, --version          print the version
-  --lang, --language      set the Bible language
-  --onlyVerses            prevent showing additional outpt
-  --s, --search           get the verses that match to the string or
-                          regular expression provided
-  --rc, --resultColor     set the result color when searching something
-  --help                  print this output
+  --v, --version          prints the tool and the Bible.JS version.
+  --lang, --language      sets the language.
+  --onlyVerses            doesn't display the table, just the verses.
+  --s, --search           gets the verses that match to the string or
+                          regular expression provided.
+  --rc, --resultColor     sets the result color when searching something.
+  -h --help               prints this output.
 
 references:
- - References separated by spaces (see example):
+ - References separated by spaces (see the examples).
 
-example:
+examples:
    bible --lang en 'John 1:1-10' 'Genesis 2:3-7'
    bible --lang ro --search 'Meroza'
    bible --lang ro --search '/Meroza/gi'
