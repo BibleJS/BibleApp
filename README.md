@@ -184,34 +184,7 @@ Results for search: /meroza/i
 ```
 
 ## Changelog
-### `1.0.0`
- - Upgraded to bible.js@2.0.0
- - Submodule support (which was introduced in [`bible.js@1.0.0`](https://github.com/BibleJS/bible.js)
- - Fixed ASCII table rendering.
- - New syntax for getting verses:
-
-   ```sh
-   $ bible --lang en 'Genesis 1:1'
-   $ bible 'Geneza 1:1' # supposing "ro" language is set in ~/.bible-config.json file
-   $ bible -s '/meroza/i' # you can pass regular expressions there
-   ```
-
-
-### `v0.1.3`
- - Added search feature upgrading the `bible.js` module to `v0.1.6`. It supports only Romanian language.
- - Set the default searched result color using `--rc` or `--resultColor`
- - Added `couleurs` as dependency
-
-### `v0.1.2`
- - Upgrade to `bible.js@0.1.6`
-
-### `v0.1.1`
- - Added `--onlyVerses` option.
- - Upgrade to `bible.js@0.1.5`
-
-### `v0.1.0`
- - First stable release
- - Upgrade to `bible.js@0.1.4`
+See the [releases page](https://github.com/BibleJS/BibleApp/releases).
 
 ## License
 See LICENSE file.
