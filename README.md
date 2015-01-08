@@ -2,6 +2,8 @@ Bible
 =====
 Bible.JS CLI client. Read the Holy Bible via the command line.
 
+![Screenshot](http://i.imgur.com/CcEXgHy.png)
+
 ## Installation
 
 ```sh
