@@ -13,11 +13,11 @@ $ npm install -g bible
 ## How to use
 
 ```sh
-$ ./bible.js --help
+$ bible --help
 bible --help
 usage: bible [options] [reference1, reference2, ...]
 
-CLI client for bible.js NPM module. Read the Holy Bible via command line
+Bible.JS CLI client. Read the Holy Bible via the command line.
 
 options:
   --v, --version          print the version

@@ -1,7 +1,7 @@
 module.exports = "bible --help"
         + "\n" + "usage: bible [options] [reference1, reference2, ...]"
         + "\n" + ""
-        + "\n" + "CLI client for bible.js NPM module. Read the Holy Bible via command line"
+        + "\n" + "Bible.JS CLI client. Read the Holy Bible via the command line."
         + "\n" + ""
         + "\n" + "options:"
         + "\n" + "  --v, --version          print the version"
