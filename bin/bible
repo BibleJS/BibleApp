@@ -5,19 +5,21 @@ var BibleJS = require("bible.js")
   , Couleurs = require("couleurs")()
   , Debug = require("bug-killer")
   , RegexParser = require("regex-parser")
-  , Ul = require("ul")
+  , ReadJson = require("r-json")
+  , WriteJson = require("w-json")
+  , Abs = require("abs")
   , Yargs = require("yargs")
   , OS = require("os")
   , LeTable = require("le-table")
-  , Fs = require("fs")
+  , IsThere = require("is-there")
   , config = null
   ;
 
 // Help output
 const HELP = require("./docs/help")
     , SAMPLE_CONFIGURATION = require("./docs/sample-conf")
-    , CONFIG_FILE_PATH = Ul.USER_DIR + "/.bible-config.json"
-    , SUBMODULES_DIR = Ul.USER_DIR + "/.bible"
+    , CONFIG_FILE_PATH = Abs("~/.bible-config.json")
+    , SUBMODULES_DIR = Abs("~/.bible")
     ;
 
 // CLI args parser
@@ -28,21 +30,16 @@ var Argv = Yargs.argv
   , searchResultColor = null
   ;
 
-// Set log level
-Debug.config.logLevel = 3;
-
 // Read the configuration file
 try {
-    config = require(CONFIG_FILE_PATH);
+    config = ReadJson(CONFIG_FILE_PATH);
 } catch (e) {
     if (e.code === "MODULE_NOT_FOUND") {
         Debug.log(
             "No configuration file was found. Initing the configuration file."
           , "warn"
         );
-        Fs.writeFileSync(CONFIG_FILE_PATH, JSON.stringify(
-            SAMPLE_CONFIGURATION, null, 4
-        ));
+        WriteJson(CONFIG_FILE_PATH, SAMPLE_CONFIGURATION)
         Debug.log(
             "The configuration file created successfully at the following location: "
           + CONFIG_FILE_PATH
@@ -182,7 +179,7 @@ function printOutput (err, verses) {
 }
 
 // Check if the ~/.bible dir exists
-if (!Fs.existsSync(SUBMODULES_DIR)) {
+if (!IsThere(SUBMODULES_DIR)) {
     Debug.log("~/.bible directory was not found. Downloading packages. This may take a while.", "info");
 }
 
