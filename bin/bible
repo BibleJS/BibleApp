@@ -34,7 +34,7 @@ var Argv = Yargs.argv
 try {
     config = ReadJson(CONFIG_FILE_PATH);
 } catch (e) {
-    if (e.code === "MODULE_NOT_FOUND") {
+    if (e.code === "ENOENT") {
         Debug.log(
             "No configuration file was found. Initing the configuration file."
           , "warn"
