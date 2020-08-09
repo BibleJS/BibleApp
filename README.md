@@ -13,13 +13,36 @@
 <!-- * * * Thanks! * * *                                                    -->
 <!---------------------------------------------------------------------------->
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # `$ bible` [![Donate now][donate-now]][paypal-donations]
 
 Read the Holy Bible via the command line.
 
+
 ![bible](http://i.imgur.com/CcEXgHy.png)
 
+
+
 ## Installation
+
+
 
 You can install the package globally and use it as command line tool:
 
@@ -74,8 +97,14 @@ field). The additional configuration fields are listed below:
  - `searchLimit`: an integer representing max number of verses that will be
                   output when searching something
 
+
 Documentation can be found at https://github.com/BibleJS/BibleApp
 ```
+
+
+
+
+
 
 ## First run
 Like documented above, on the first run the application will sync the submodules
@@ -199,12 +228,15 @@ Results for search: /meroza/i
 └───────────────┴───────────────────────────────────────────────────────────────────────────────┘
 ```
 
+
 ## How to contribute
 Have an idea? Found a bug? See [how to contribute][contributing].
+
 
 ## License
 [KINDLY][license] © [Ionică Bizău][website]–The [LICENSE](/LICENSE) file contains
 a copy of the license.
+
 
 [license]: http://ionicabizau.github.io/kindly-license/?author=Ionic%C4%83%20Biz%C4%83u%20%3Cbizauionica@gmail.com%3E&year=2015
 [contributing]: /CONTRIBUTING.md
