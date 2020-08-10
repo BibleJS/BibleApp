@@ -140,7 +140,7 @@ Thanks! :heart:
 
 ## :scroll: License
 
-[KINDLY][license] © [Ionică Bizău][website]
+[MIT][license] © [Ionică Bizău][website]
 
 
 
@@ -148,7 +148,7 @@ Thanks! :heart:
 
 
 [license]: /LICENSE
-[website]: undefined
+[website]: https://ionicabizau.net
 [contributing]: /CONTRIBUTING.md
 [docs]: /DOCUMENTATION.md
 [badge_patreon]: https://ionicabizau.github.io/badges/patreon.svg
