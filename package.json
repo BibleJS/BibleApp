@@ -1,8 +1,8 @@
 {
   "name": "bible",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Read the Holy Bible via the command line.",
-  "main": "bible.js",
+  "main": "lib/index.js",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -20,8 +20,8 @@
     "node",
     "application"
   ],
-  "author": "Ionică Bizău <bizauionica@gmail.com>",
-  "license": "KINDLY",
+  "author": "Ionică Bizău <bizauionica@gmail.com> (https://ionicabizau.net)",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/BibleJS/BibleApp/issues"
   },
@@ -44,5 +44,20 @@
   },
   "blah": {
     "ex_img": "http://i.imgur.com/CcEXgHy.png"
-  }
+  },
+  "files": [
+    "bin/",
+    "app/",
+    "lib/",
+    "dist/",
+    "src/",
+    "scripts/",
+    "resources/",
+    "menu/",
+    "cli.js",
+    "index.js",
+    "bloggify.js",
+    "bloggify.json",
+    "bloggify/"
+  ]
 }
